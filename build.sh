@@ -25,9 +25,14 @@ php artisan cache:clear
 php artisan route:clear
 php artisan view:clear
 
-# Gerar chave da aplicação se não existir
-echo "🔑 Configurando chave da aplicação..."
-php artisan key:generate --force --no-interaction
+# Verificar se APP_KEY existe (não gerar nova em produção)
+echo "🔑 Verificando chave da aplicação..."
+if [ -z "$APP_KEY" ]; then
+    echo "⚠️ APP_KEY não definida nas variáveis de ambiente!"
+    exit 1
+else
+    echo "✅ APP_KEY configurada corretamente"
+fi
 
 # Testar conexão com banco
 echo "🔍 Testando conexão com banco..."
