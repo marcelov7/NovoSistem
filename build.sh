@@ -25,13 +25,12 @@ php artisan cache:clear
 php artisan route:clear
 php artisan view:clear
 
-# Verificar se APP_KEY existe (não gerar nova em produção)
+# Verificar se APP_KEY existe (será definida no runtime)
 echo "🔑 Verificando chave da aplicação..."
 if [ -z "$APP_KEY" ]; then
-    echo "⚠️ APP_KEY não definida nas variáveis de ambiente!"
-    exit 1
+    echo "ℹ️ APP_KEY será configurada no runtime pelo Render"
 else
-    echo "✅ APP_KEY configurada corretamente"
+    echo "✅ APP_KEY já configurada"
 fi
 
 # Testar conexão com banco
@@ -42,10 +41,14 @@ php artisan migrate:status || echo "⚠️ Banco não acessível ainda"
 echo "🗄️ Executando migrações..."
 php artisan migrate --force --no-interaction
 
-# Configurar cache de produção
+# Configurar cache de produção (apenas se APP_KEY existir)
 echo "⚡ Configurando cache de produção..."
-php artisan config:cache
-php artisan route:cache
+if [ -n "$APP_KEY" ]; then
+    php artisan config:cache
+    php artisan route:cache
+else
+    echo "ℹ️ Cache será configurado no runtime (APP_KEY necessária)"
+fi
 
 # Verificar se as rotas estão funcionando
 echo "🔍 Verificando rotas..."

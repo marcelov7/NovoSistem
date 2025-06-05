@@ -26,8 +26,8 @@ WORKDIR /app
 # Copiar arquivos do projeto
 COPY . .
 
-# Tornar build.sh executável
-RUN chmod +x build.sh
+# Tornar scripts executáveis
+RUN chmod +x build.sh start.sh
 
 # Executar build
 RUN ./build.sh
@@ -36,4 +36,4 @@ RUN ./build.sh
 EXPOSE $PORT
 
 # Comando de inicialização
-CMD ["sh", "-c", "php -S 0.0.0.0:$PORT -t public/"] 
+CMD ["./start.sh"] 
