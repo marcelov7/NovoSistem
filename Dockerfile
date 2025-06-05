@@ -27,7 +27,7 @@ WORKDIR /app
 COPY . .
 
 # Tornar scripts executáveis
-RUN chmod +x build.sh start.sh
+RUN chmod +x build.sh start.sh debug-start.sh
 
 # Executar build
 RUN ./build.sh
@@ -36,4 +36,4 @@ RUN ./build.sh
 EXPOSE $PORT
 
 # Comando de inicialização
-CMD ["./start.sh"] 
+CMD ["./debug-start.sh"] 
