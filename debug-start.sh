@@ -34,8 +34,19 @@ echo "=== CONFIGURANDO CACHE ==="
 php artisan config:cache || echo "Erro ao configurar cache"
 php artisan route:cache || echo "Erro ao configurar cache de rotas"
 
+echo "=== VERIFICANDO VARIÁVEIS DO BANCO ==="
+echo "DB_CONNECTION: $DB_CONNECTION"
+echo "DB_HOST: $DB_HOST"
+echo "DB_PORT: $DB_PORT"
+echo "DB_DATABASE: $DB_DATABASE"
+echo "DB_USERNAME: $DB_USERNAME"
+echo "DB_PASSWORD definida: ${DB_PASSWORD:+SIM}"
+
+echo "=== TESTANDO CONEXÃO COM BANCO ==="
+php artisan migrate:status || echo "❌ Erro ao verificar status das migrações"
+
 echo "=== EXECUTANDO MIGRAÇÕES ==="
-php artisan migrate --force --no-interaction || echo "Erro nas migrações"
+php artisan migrate --force --no-interaction -v || echo "❌ Erro nas migrações"
 
 echo "=== INICIANDO SERVIDOR ==="
 PORT=${PORT:-10000}
