@@ -41,6 +41,7 @@ echo "DB_PORT: $DB_PORT"
 echo "DB_DATABASE: $DB_DATABASE"
 echo "DB_USERNAME: $DB_USERNAME"
 echo "DB_PASSWORD definida: ${DB_PASSWORD:+SIM}"
+echo "DB_SSLMODE: ${DB_SSLMODE:-não definida}"
 
 echo "=== TESTANDO CONEXÃO COM BANCO ==="
 php artisan migrate:status || echo "❌ Erro ao verificar status das migrações"

@@ -1,0 +1,27 @@
+VARIÁVEIS SSL PARA POSTGRESQL NO RENDER:
+
+Adicione estas variáveis de ambiente no seu serviço web:
+
+DB_SSLMODE=require
+DB_SSLCERT=
+DB_SSLKEY=
+DB_SSLROOTCERT=
+
+OU (alternativa mais simples):
+
+DB_SSLMODE=prefer
+
+OU (para debug temporário):
+
+DB_SSLMODE=disable
+
+INSTRUÇÕES:
+1. Vá nas Environment Variables do seu serviço web no Render
+2. Adicione: DB_SSLMODE=prefer
+3. Salve e faça redeploy
+4. Se não funcionar, tente: DB_SSLMODE=disable
+
+EXPLICAÇÃO:
+- require: Força SSL (pode dar erro se certificados não estão configurados)
+- prefer: Tenta SSL mas aceita sem SSL se falhar
+- disable: Desabilita SSL completamente (menos seguro mas funciona) 
