@@ -94,9 +94,12 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => env('DB_SSLMODE', 'disable'),
+            'sslmode' => env('DB_SSLMODE', 'require'),
             'options' => [
                 PDO::PGSQL_ATTR_DISABLE_PREPARES => true,
+                PDO::ATTR_SSL_CA => null,
+                PDO::ATTR_SSL_VERIFY_HOST => false,
+                PDO::ATTR_SSL_VERIFY_PEER => false,
             ],
         ],
 
