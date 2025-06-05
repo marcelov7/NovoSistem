@@ -33,6 +33,7 @@ fi
 echo "=== CONFIGURANDO CACHE ==="
 php artisan config:cache || echo "Erro ao configurar cache"
 php artisan route:cache || echo "Erro ao configurar cache de rotas"
+php artisan view:cache || echo "Erro ao configurar cache de views"
 
 echo "=== VERIFICANDO VARIÁVEIS DO BANCO ==="
 echo "DB_CONNECTION: $DB_CONNECTION"
@@ -48,6 +49,10 @@ php artisan migrate:status || echo "❌ Erro ao verificar status das migrações
 
 echo "=== EXECUTANDO MIGRAÇÕES ==="
 php artisan migrate --force --no-interaction -v || echo "❌ Erro nas migrações"
+
+echo "=== LIMPANDO CACHE ANTES DE INICIAR ==="
+php artisan config:clear || echo "Erro ao limpar config"
+php artisan view:clear || echo "Erro ao limpar views"
 
 echo "=== INICIANDO SERVIDOR ==="
 PORT=${PORT:-10000}
