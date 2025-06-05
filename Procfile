@@ -1,1 +1,1 @@
-web: bash debug-start.sh 
+web: bash start-simple.sh 
