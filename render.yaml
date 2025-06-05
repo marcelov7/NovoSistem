@@ -1,7 +1,8 @@
 services:
   - type: web
     name: novosistem
-    env: php
+    runtime: docker
+    repo: https://github.com/marcelov7/NovoSistem.git
     buildCommand: "./build.sh"
     startCommand: "php -S 0.0.0.0:$PORT -t public/"
     envVars:

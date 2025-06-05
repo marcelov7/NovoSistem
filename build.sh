@@ -2,28 +2,26 @@
 
 echo "🚀 Iniciando build do NovoSistem para Render..."
 
+# Instalar dependências do Node.js primeiro (para resolver conflitos)
+echo "📦 Instalando dependências Node.js..."
+npm ci --legacy-peer-deps
+
 # Instalar dependências do Composer
 echo "📦 Instalando dependências PHP..."
 composer install --no-dev --optimize-autoloader
 
-# Instalar dependências do Node.js
-echo "📦 Instalando dependências Node.js..."
-npm ci
+# Compilar assets para produção
+echo "🎨 Compilando assets..."
+npm run build
 
 # Gerar chave da aplicação se não existir
 echo "🔑 Configurando chave da aplicação..."
 php artisan key:generate --force
 
-# Limpar e configurar cache
+# Limpar cache
 echo "🧹 Limpando cache..."
 php artisan config:clear
-php artisan route:clear
-php artisan view:clear
 php artisan cache:clear
-
-# Compilar assets para produção
-echo "🎨 Compilando assets..."
-npm run build
 
 # Executar migrações
 echo "🗄️ Executando migrações..."
@@ -33,10 +31,5 @@ php artisan migrate --force
 echo "⚡ Configurando cache de produção..."
 php artisan config:cache
 php artisan route:cache
-php artisan view:cache
-
-# Otimizações finais
-echo "🔧 Aplicando otimizações..."
-php artisan optimize
 
 echo "✅ Build concluído com sucesso!" 
