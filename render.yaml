@@ -1,0 +1,51 @@
+services:
+  - type: web
+    name: novosistem
+    env: php
+    buildCommand: "./build.sh"
+    startCommand: "php -S 0.0.0.0:$PORT -t public/"
+    envVars:
+      - key: APP_NAME
+        value: NovoSistem
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_TIMEZONE
+        value: America/Sao_Paulo
+      - key: APP_LOCALE
+        value: pt_BR
+      - key: APP_FALLBACK_LOCALE
+        value: pt_BR
+      - key: APP_FAKER_LOCALE
+        value: pt_BR
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+      - key: SESSION_DRIVER
+        value: database
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        value: dpg-d10ti95pdvs73acede0-a.oregon-postgres.render.com
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        value: dbrelatorio_rqkg
+      - key: DB_USERNAME
+        value: dbrelatorio_rqkg_user
+      - key: DB_PASSWORD
+        value: CJZUYC4FeqPg3FfSZDVu7SoSaXhpzPwV
+      - key: BROADCAST_CONNECTION
+        value: log
+      - key: FILESYSTEM_DISK
+        value: local
+      - key: LOG_CHANNEL
+        value: stack
+      - key: LOG_STACK
+        value: single
+      - key: LOG_LEVEL
+        value: debug
+      - key: MAIL_MAILER
+        value: log 
