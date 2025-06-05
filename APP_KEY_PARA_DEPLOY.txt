@@ -1,0 +1,20 @@
+INSTRUÇÕES PARA CORREÇÃO DO DEPLOY:
+
+1. No arquivo .env, substitua a linha:
+   APP_KEY=
+
+   Por:
+   APP_KEY=base64:B3deYn+4QOnNAGLoNQwg870nWmCKWJhYAPNHemtG/Ak=
+
+2. No Render.com, nas variáveis de ambiente, adicione:
+   APP_KEY=base64:B3deYn+4QOnNAGLoNQwg870nWmCKWJhYAPNHemtG/Ak=
+
+3. Faça um novo deploy para aplicar a correção.
+
+Essa APP_KEY foi gerada especificamente para este projeto e é necessária para:
+- Criptografia de dados
+- Sessões de usuário
+- Cookies seguros
+- Tokens CSRF
+
+Sem ela, o Laravel não consegue inicializar corretamente. 
